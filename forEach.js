@@ -29,7 +29,7 @@ var arr = [1,10,2,20,30];
 //为Array添加原型方法,主要是适配IE
 Array.prototype.myForEach = function (callback) {
    if (typeof callback !== "function"){
-       throw (callback + "is not a function");
+       throw TypeError (callback + "is not a function");
    }
    for(var i = 0; i < this.length; i++){
        if (Object.prototype.hasOwnProperty.call(this,i)){
