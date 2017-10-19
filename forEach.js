@@ -6,7 +6,7 @@
 // 只被实际存在的数组元素调用；它不会被缺少的数组元素调用
 
 var arr = [1,10,2,20,30];
-console.log(arr.push());
+// console.log(arr.push());
 //传入console.log函数
 // arr.forEach(console.log);
 //数组中存在的每个数组,都调用了一次callback函数,每次都将三个参数,进行了一次输出
@@ -14,10 +14,31 @@ console.log(arr.push());
 // arr.forEach(alert);
 
 //出入匿名函数
-arr.forEach(function (value,index,array) {
-    console.log(value * value,index * value,array.push(value));
-});
+// arr.forEach(function (value,index,array) {
+//     console.log(value * value,index * value,array.push(value));
+// });
 
 //arr.push会输出数组长度
 //此时数组的长度的10,匿名函数对数组的操作,改变了数组
-console.log(arr.push());
+// console.log(arr.push());
+
+// console.log(arr.forEach(1));
+
+
+
+//为Array添加原型方法,主要是适配IE
+Array.prototype.myForEach = function (callback) {
+   if (typeof callback !== "function"){
+       throw (callback + "is not a function");
+   }
+   for(var i = 0; i < this.length; i++){
+       if (Object.prototype.hasOwnProperty.call(this,i)){
+           callback(this[i],i,this);
+       }
+   }
+};
+
+// arr.myForEach(console.log);
+arr.forEach(function (value,index,array) {
+    console.log(value * value,index * value,array.push(value));
+});
