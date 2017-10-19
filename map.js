@@ -6,7 +6,7 @@
 var arr = [1,10,2,20,30];
 var arr1 = [1,10,2,20,30];
 
-arr.map(1);
+// arr.map(1);
 // arr.map(function (i) {
 //     console.log(i*i) ;
 // });
@@ -19,12 +19,15 @@ Array.prototype.myMap = function (callback) {
     }
     for(var i = 0; i < this.length; i++){
         if (Object.prototype.hasOwnProperty.call(this,i)) {
-            arr.push(callback(this[i], i, this));
+            callback(this[i], i, this);
+
         }
     }
     return arr;
 };
 
-arr1.myMap(1);
+// arr1.myMap(1);
 
-
+arr.map(function (i) {
+    console.log(i<10) ;
+});
